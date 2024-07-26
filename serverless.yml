@@ -1,0 +1,20 @@
+# serverless.yml
+service: my-flask-app
+
+provider:
+  name: aws
+  runtime: python3.11
+  region: us-east-1
+
+functions:
+  sendEmail:
+    handler: handler.lambda_handler
+    timeout: 30 # Adjust as needed
+    events:
+      - http:
+          path: send
+          method: post
+          cors: true
+
+plugins:
+  - serverless-offline
